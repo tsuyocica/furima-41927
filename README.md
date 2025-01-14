@@ -41,7 +41,7 @@
 | region_id        | integer    | null: false (ActiveHash)       |
 | shipping_time_id | integer    | null: false (ActiveHash)       |
 | price            | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### アソシエーション
 
