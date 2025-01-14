@@ -3,7 +3,7 @@
 ## テーブル一覧
 
 - Users（ユーザー管理機能）
-- Products（商品出品機能）
+- Items（商品出品機能）
 - Orders（商品購入機能）
 - Addresses（配送先情報）
 
@@ -24,12 +24,12 @@
 
 ### アソシエーション
 
-- has_many :products
+- has_many :items
 - has_many :orders
 
 ---
 
-## Products テーブル
+## items テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
@@ -52,15 +52,15 @@
 
 ## Orders テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user    | references | null: false, foreign_key: true |
-| product | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### アソシエーション
 
 - belongs_to :user
-- belongs_to :product
+- belongs_to :item
 - has_one :address
 
 ---
@@ -85,7 +85,7 @@
 
 ## ActiveHash を利用するデータ
 
-- Products テーブル
+- Items テーブル
   - category_id
   - condition_id
   - delivery_fee_id
