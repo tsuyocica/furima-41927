@@ -52,10 +52,10 @@
 
 ## Orders テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| user_id    | references | null: false, foreign_key: true |
-| product_id | references | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
 
 ### アソシエーション
 
@@ -69,7 +69,7 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| order_id      | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 | postal_code   | string     | null: false                    |
 | region_id     | integer    | null: false (ActiveHash)       |
 | city          | string     | null: false                    |
