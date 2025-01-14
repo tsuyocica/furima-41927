@@ -1,24 +1,95 @@
-# README
+# データベース設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## テーブル一覧
 
-Things you may want to cover:
+- Users（ユーザー管理機能）
+- Products（商品出品機能）
+- Orders（商品購入機能）
+- Addresses（配送先情報）
 
-- Ruby version
+---
 
-- System dependencies
+## Users テーブル
 
-- Configuration
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birth_date         | date   | null: false               |
 
-- Database creation
+### アソシエーション
 
-- Database initialization
+- has_many :products
+- has_many :orders
 
-- How to run the test suite
+---
 
-- Services (job queues, cache servers, search engines, etc.)
+## Products テーブル
 
-- Deployment instructions
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| name             | string     | null: false                    |
+| description      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
+| delivery_fee_id  | integer    | null: false                    |
+| region_id        | integer    | null: false                    |
+| shipping_time_id | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
-- ...
+### アソシエーション
+
+- belongs_to :user
+- has_one :order
+
+---
+
+## Orders テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
+
+### アソシエーション
+
+- belongs_to :user
+- belongs_to :product
+- has_one :address
+
+---
+
+## Addresses テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| order         | references | null: false, foreign_key: true |
+| postal_code   | string     | null: false                    |
+| region_id     | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address_line  | string     | null: false                    |
+| building_name | string     |                                |
+| phone_number  | string     | null: false                    |
+
+### アソシエーション
+
+- belongs_to :order
+
+---
+
+## ActiveHash を利用するデータ
+
+- Products テーブル
+  - category_id
+  - condition_id
+  - delivery_fee_id
+  - region_id
+  - shipping_time_id
+- Addresses テーブル
+  - region_id
