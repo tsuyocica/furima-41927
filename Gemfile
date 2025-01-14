@@ -72,8 +72,8 @@ group :test do
   gem "webdrivers"
 end
 
-gem "pry-rails"
-gem "devise"
+gem 'pry-rails'
+gem 'devise'
 gem 'rename'
 
 group :production do
