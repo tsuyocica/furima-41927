@@ -16,8 +16,8 @@ class Item < ApplicationRecord
 
   #バリデーション
   with_options presence: true do
-    validates :name
-    validates :description
+    validates :name, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 }
     validates :category_id
     validates :condition_id
     validates :shipping_charge_id
