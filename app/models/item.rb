@@ -15,22 +15,18 @@ class Item < ApplicationRecord
 
   #バリデーション
   with_options presence: true do
+    validates :image
     validates :name, length: { maximum: 40 }
     validates :description, length: { maximum: 1000 }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  end
+
+  #ActiveHashのバリデーション
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
     validates :delivery_fee_id
     validates :region_id
     validates :shipping_time_id
-    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-  end
-
-  #ActiveHashのバリデーション
-  with_options numericality: { other_than: 1, message: "を選択してください" } do
-    validates :category_id
-    validates :condition_id
-    validates :delivery_fee_id
-    validates :region_id
-    validates :shipping_time
   end
 end
