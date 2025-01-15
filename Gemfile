@@ -75,10 +75,11 @@ group :test do
   gem "webdrivers"
 end
 
-gem 'pry-rails'
-gem 'devise'
-gem 'rename'
-
 group :production do
   gem 'pg'
 end
+
+gem 'pry-rails'
+gem 'devise'
+gem 'rename'
+gem 'active_hash'
