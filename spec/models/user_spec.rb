@@ -1,5 +1,7 @@
 require 'rails_helper'
+
 RSpec.describe User, type: :model do
+
   before do
     @user = FactoryBot.build(:user)
   end
@@ -10,8 +12,9 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
     end
-# nicknameのバリデーションについての確認
+
     context '新規登録ができない場合' do
+# nicknameのバリデーションについての確認
       it 'nicknameが空だと登録できない' do
         @user.nickname = ''
         @user.valid?
