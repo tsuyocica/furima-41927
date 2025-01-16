@@ -8,7 +8,7 @@ const price = () => {
 	priceInput.addEventListener("input", () => {
 		const inputValue = priceInput.value;
 		const fee = Math.floor(inputValue * 0.1);
-		const profitAmount = inputValue - fee;
+		const profitAmount = Math.floor(inputValue - fee);
 
 		taxPrice.innerHTML = fee.toLocaleString();
 		profit.innerHTML = profitAmount.toLocaleString();
