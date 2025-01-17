@@ -38,15 +38,16 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(
-      :image, :name, :description, :category_id,
-      :condition_id, :delivery_fee_id, :region_id,
-      :shipping_time_id, :price
-    ).merge(user_id: current_user.id).compact_blank
+      :image, :name, :description, :category_id,:condition_id,
+      :delivery_fee_id, :region_id,:shipping_time_id, :price
+    ).merge(user_id: current_user.id)
   end
 
   def set_item
     @item = Item.find_by(id: params[:id])
-    redirect_to root_path if @item.nil?
+    if @item.nil?
+      redirect_to root_path
+    end
   end
 
   def redirect_if_not_author
