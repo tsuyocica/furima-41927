@@ -9,6 +9,7 @@ class Item < ApplicationRecord
 
   #その他のアソシエーション
   belongs_to :user
+  has_one :order
 
   #ファイル添付
   has_one_attached :image
