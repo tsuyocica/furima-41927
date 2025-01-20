@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_not_author, only: [:edit, :update, :destroy]
+  before_action :redirect_if_invalid_access, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -57,5 +58,11 @@ class ItemsController < ApplicationController
 
   def redirect_if_not_author
     redirect_to root_path unless current_user == @item.user
+  end
+
+  def redirect_if_invalid_access
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 end
