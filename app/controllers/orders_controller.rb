@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :redirect_if_invalid_access
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_form = OrderForm.new
   end
 
@@ -14,6 +15,7 @@ class OrdersController < ApplicationController
       @order_form.save
       return redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render 'index', status: :unprocessable_entity
     end
   end
@@ -39,7 +41,7 @@ class OrdersController < ApplicationController
     end
 
     def pay_item
-      Payjp.api_key = "sk_test_c105f76b9125f27fd0c368b9"
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item.price,
         card: order_params[:token],
