@@ -12,7 +12,7 @@ class OrderForm
     validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :address_line
-    validates :phone_number, numericality: { only_integer: true, message: "is invalid. Input only number" },
+    validates :phone_number, format: { with: /\A\d+\z/, message: "is invalid. Input only numbers" },
                              length: { minimum: 10, too_short: "is too short (minimum is 10 digits)",
                                        maximum: 11, too_long: "is too long (maximum is 11 digits)" }
   end
