@@ -67,7 +67,7 @@ RSpec.describe OrderForm, type: :model do
       it '電話番号が半角数値でない場合、購入できない' do
         @order_form.phone_number = '０９０１２３４５６７８'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input only numbers")
       end
       # tokenのバリデーションについての確認
       it 'クレジットカード情報が空欄の場合、購入できない' do
