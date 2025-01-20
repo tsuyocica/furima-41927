@@ -13,7 +13,8 @@ class OrderForm
     validates :city
     validates :address_line
     validates :phone_number, numericality: { only_integer: true, message: "is invalid. Input only number" },
-                             length: { in: 10..11, message: "is too short (minimum is 10 characters)" }
+                             length: { minimum: 10, too_short: "is too short (minimum is 10 digits)",
+                                       maximum: 11, too_long: "is too long (maximum is 11 digits)" }
   end
 
   def save
