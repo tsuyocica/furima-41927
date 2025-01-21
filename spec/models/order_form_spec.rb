@@ -28,7 +28,7 @@ RSpec.describe OrderForm, type: :model do
       it '郵便番号がハイフンなしの場合、購入できない' do
         @order_form.postal_code = '1234567'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order_form.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       # region_idのバリデーションについての確認
       it '都道府県が未選択の場合、購入できない' do
@@ -57,17 +57,17 @@ RSpec.describe OrderForm, type: :model do
       it '電話番号が9桁以下の場合、購入できない' do
         @order_form.phone_number = '090123456'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is too short (minimum is 10 digits)")
+        expect(@order_form.errors.full_messages).to include('Phone number is too short (minimum is 10 digits)')
       end
       it '電話番号が12桁以上の場合、購入できない' do
         @order_form.phone_number = '090123456789'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is too long (maximum is 11 digits)")
+        expect(@order_form.errors.full_messages).to include('Phone number is too long (maximum is 11 digits)')
       end
       it '電話番号が半角数値でない場合、購入できない' do
         @order_form.phone_number = '０９０１２３４５６７８'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input only numbers")
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid. Input only numbers')
       end
       # tokenのバリデーションについての確認
       it 'クレジットカード情報が空欄の場合、購入できない' do

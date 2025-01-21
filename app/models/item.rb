@@ -1,28 +1,28 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  #ActiveHashのアソシエーション
+  # ActiveHashのアソシエーション
   belongs_to :category
   belongs_to :condition
   belongs_to :delivery_fee
   belongs_to :region
   belongs_to :shipping_time
 
-  #その他のアソシエーション
+  # その他のアソシエーション
   belongs_to :user
   has_one :order
 
-  #ファイル添付
+  # ファイル添付
   has_one_attached :image
 
-  #バリデーション
+  # バリデーション
   with_options presence: true do
     validates :image
     validates :name, length: { maximum: 40 }
     validates :description, length: { maximum: 1000 }
-    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   end
 
-  #ActiveHashのバリデーション
+  # ActiveHashのバリデーション
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
