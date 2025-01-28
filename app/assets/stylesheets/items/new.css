@@ -88,6 +88,13 @@
 .click-upload>p {
   margin-bottom: 15px;
 }
+/* プレビュー画像のスタイル*/
+.preview-image {
+    width: 600px;
+    height: 600px;
+    object-fit: contain; /* 画像の比率を維持しつつ、余白を入れる */
+    background-color: #f0f0f0; /* 余白部分の色（オプション） */
+}
 
 /* /商品画像 */
 
